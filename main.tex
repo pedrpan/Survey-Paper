@@ -13,10 +13,26 @@
 \tableofcontents
 
 \begin{abstract}
-A ubiquitous problem in computer science research is the optimization of computation on large data sets. Such computations are usually too large to be preformed on one machine and therefore the task needs to be distributed amongst a network of machines. However a common problem within distributed computing is the mitigation of delays caused by faulty machines in the network. This can be performed by the use of coding theory to optimize the amount of redundancy needed to handle such faults.  This problem differs from classical coding theory insofar that it is concerned with the dynamic coded computation on data rather than just statically coding data without any consideration of the algorithms to be performed on said data. Of particular interest is the operation of matrix multiplication, which happens to be a fundamental operation in many big data/machine learning algorithms, which is the main focus of this paper. A wonderful coincide of the (bi-)linear nature of matrix multiplication is that it is both highly parrallelizable and that linear codes can be applied to it; making the coding theory approach a successful avenue of research for this particular optimization of distributed computing. 
+A ubiquitous problem in computer science research is the optimization of computation on large data sets. Such computations are usually too large to be preformed on one machine and therefore the task needs to be distributed amongst a network of machines. However, a common problem within distributed computing is the mitigation of delays caused by faulty machines in the network or traffic congestion. This can be performed by the use of coding theory to optimize the amount of redundancy needed to handle such faults.  This problem differs from classical coding theory insofar that it is concerned with the dynamic coded computation on data rather than just statically coding data without any consideration of the algorithms to be performed on said data. Of particular interest is the operation of matrix multiplication, which happens to be a fundamental operation in many big data/machine learning algorithms, which is the main focus of this paper. Two wonderful consequences of the (bi-)linear nature of matrix multiplication is that it is both highly parrallelizable and that linear codes can be applied to it; making the coding theory approach a fruitful avenue of research for this particular optimization of distributed computing. 
 \end{abstract}
 
 \section{Introduction}
+
+As the rate at which CPU's get smaller slows (since there is an atomic limit on their size) distributed computing has become a more ubiquitous and necessary topic in both research and the lives of ordinary consumers of computer technology. 
+Another reason for the rise of distributed computing is that data sets have become very large and the computations performed on them must be split amongst many machines. 
+In a distributed setting a large task is split up into smaller tasks that are run in parallel amongst the machines, or nodes, in the network. 
+
+However, it is well known that nodes in a distributed infrastructure are commonly composed of commodity hardware which are more likely to be subject to various faulty behaviors~\cite{Huang2017a}. 
+One example of such a fault is when a node may experiences a temporary performance degradation due to load imbalance or resource congestion~\cite{Lee2018a}. 
+In particular, the performance of virtual machines in Amazon EC2 clusters have been observed to have a performance degradation of up to a factor of $5$~\cite{Tandon2017, Lee2018a}. 
+A node may even fail to complete a task due to hardware failures, network partition, or power failures. 
+In a Facebook data center, it has been reported that up to more than 100 such failures can happen on a daily basis~\cite{Rashmi2013,Sathiamoorthy2013}.
+% Couldn't figure out how to change this sentance.
+Therefore, when the computation is distributed onto multiple nodes, its progress can be significantly affected by the tasks running on such slow or failed
+nodes, which we call {\em stragglers}.
+
+\subsection{Problem Formulation}
+
 
 \section{Background}
 
@@ -24,6 +40,7 @@ A ubiquitous problem in computer science research is the optimization of computa
 
 \subsection{Linear Algebra and Learning Algorithms}
 
+\subsection{Distributed Systems}
 
 
 \section{Related Works}
@@ -42,5 +59,8 @@ A ubiquitous problem in computer science research is the optimization of computa
 \subsection{Spinner}
 
 \subsection{Rook Poly}
+
+\bibliographystyle{alpha}
+\bibliography{references}
 
 \end{document}

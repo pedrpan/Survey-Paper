@@ -1,0 +1,65 @@
+@inproceedings{Huang2017a,
+abstract = {Cloud scale provides the vast resources necessary to replace failed components, but this is useful only if those failures can be detected. For this reason, the major availability breakdowns and performance anomalies we see in cloud environments tend to be caused by subtle underlying faults, i.e., gray failure rather than fail-stop failure. In this paper, we discuss our experiences with gray failure in production cloud-scale systems to show its broad scope and consequences. We also argue that a key feature of gray failure is differential observabil-ity: that the system's failure detectors may not notice problems even when applications are afflicted by them. This realization leads us to believe that, to best deal with them, we should focus on bridging the gap between different components' perceptions of what constitutes failure.},
+author = {Huang, Peng and Guo, Chuanxiong and Zhou, Lidong and Lorch, Jacob R and Dang, Yingnong and Chintalapati, Murali and Yao, Randolph},
+booktitle = {USENIX Conference on Hot Topics in Operating Systems (HotOS)},
+title = {{Gray Failure: The Achilles' Heel of Cloud-Scale Systems}},
+year = {2017}
+}
+
+
+@article{Lee2018a,
+abstract = {Codes are widely used in many engineering applications to offer robustness against noise. In large-scale systems there are several types of noise that can affect the performance of distributed machine learning algorithms -- straggler nodes, system failures, or communication bottlenecks -- but there has been little interaction cutting across codes, machine learning, and distributed systems. In this work, we provide theoretical insights on how coded solutions can achieve significant gains compared to uncoded ones. We focus on two of the most basic building blocks of distributed learning algorithms: matrix multiplication and data shuffling. For matrix multiplication, we use codes to alleviate the effect of stragglers, and show that if the number of homogeneous workers is {\$}n{\$}, and the runtime of each subtask has an exponential tail, coded computation can speed up distributed matrix multiplication by a factor of {\$}\backslashlog n{\$}. For data shuffling, we use codes to reduce communication bottlenecks, exploiting the excess in storage. We show that when a constant fraction {\$}\backslashalpha{\$} of the data matrix can be cached at each worker, and {\$}n{\$} is the number of workers, $\backslash$emph{\{}coded shuffling{\}} reduces the communication cost by a factor of {\$}(\backslashalpha + \backslashfrac{\{}1{\}}{\{}n{\}})\backslashgamma(n){\$} compared to uncoded shuffling, where {\$}\backslashgamma(n){\$} is the ratio of the cost of unicasting {\$}n{\$} messages to {\$}n{\$} users to multicasting a common message (of the same size) to {\$}n{\$} users. For instance, {\$}\backslashgamma(n) \backslashsimeq n{\$} if multicasting a message to {\$}n{\$} users is as cheap as unicasting a message to one user. We also provide experiment results, corroborating our theoretical gains of the coded algorithms.},
+author = {Lee, Kangwook and Lam, Maximilian and Pedarsani, Ramtin and Papailiopoulos, Dimitris and Ramchandran, Kannan},
+file = {:Users/junli/Library/Application Support/Mendeley Desktop/Downloaded/Lee et al. - 2018 - Speeding Up Distributed Machine Learning Using Codes.pdf:pdf},
+journal = {IEEE Transactions on Information Theory},
+keywords = {1D,Algorithm design and analysis,channel coding,distributed computing,distributed databases,encoding,machine learning algorithms,multicast communication,robustness,runtime},
+mendeley-tags = {1D},
+number = {3},
+pages = {1514--1529},
+title = {{Speeding Up Distributed Machine Learning Using Codes}},
+volume = {64},
+year = {2018}
+}
+
+
+@inproceedings{Tandon2017,
+abstract = {We propose a novel coding theoretic framework for mitigating stragglers in distributed learning. We show how carefully replicating data blocks and coding across gradients can provide tolerance to failures and stragglers for synchronous Gradient Descent. We implement our schemes in python (using MPI) to run on Amazon EC2, and show how we compare against baseline approaches in running time and generalization error.},
+author = {Tandon, Rashish and Lei, Qi and Dimakis, Alexandros G and Karampatziakis, Nikos},
+booktitle = {International Conference on Machine Learning (ICML)},
+pages = {3368--3376},
+title = {{Gradient Coding: Avoiding Stragglers in Distributed Learning}},
+year = {2017}
+}
+
+
+@inproceedings{Rashmi2013,
+abstract = {Erasure codes, such as Reed-Solomon (RS) codes, are being increasingly employed in data centers to combat the cost of reliably storing large amounts of data. Although these codes provide optimal storage efficiency, they require significantly high network and disk usage during recovery of missing data. In this paper, we first present a study on the impact of recovery operations of erasure-coded data on the data-center network, based on measurements from Facebook's warehouse cluster in production. To the best of our knowledge, this is the first study of its kind available in the literature. Our study reveals that recovery of RS-coded data results in a significant increase in network traffic, more than a hundred terabytes per day, in a cluster storing multiple petabytes of RS-coded data. To address this issue, we present a new storage code using our recently proposed "Piggybacking" framework, that reduces the network and disk usage during recovery by 30{\%} in theory, while also being storage optimal and supporting arbitrary design parameters. The implementation of the proposed code in the Hadoop Distributed File System (HDFS) is underway. We use the measurements from the warehouse cluster to show that the proposed code would lead to a reduction of close to fifty terabytes of cross-rack traffic per day.},
+archivePrefix = {arXiv},
+arxivId = {1309.0186},
+author = {Rashmi, K. V. and Shah, Nihar B. and Gu, Dikang and Kuang, Hairong and Borthakur, Dhruba and Ramchandran, Kannan},
+booktitle = {USENIX Workshop on Hot Topics in Storage and File Systems (HotStorage)},
+eprint = {1309.0186},
+file = {:Users/junli/Library/Application Support/Mendeley Desktop/Downloaded/Rashmi et al. - Unknown - A Solution to the Network Challenges of Data Recovery in Erasure-coded Distributed Storage Systems A Study (2).pdf:pdf},
+title = {{A Solution to the Network Challenges of Data Recovery in Erasure-coded Distributed Storage Systems: A Study on the Facebook Warehouse Cluster}},
+year = {2013}
+}
+
+
+@article{Sathiamoorthy2013,
+abstract = {Distributed storage systems for large clusters typically use replication to provide reliability. Recently, erasure codes have been used to reduce the large storage overhead of three-replicated systems. Reed-Solomon codes are the standard design choice and their high repair cost is often considered an unavoidable price to pay for high storage efficiency and high reliability. This paper shows how to overcome this limitation. We present a novel family of erasure codes that are efficiently repairable and offer higher reliability compared to Reed-Solomon codes. We show analytically that our codes are optimal on a recently identified tradeoff between locality and minimum distance. We implement our new codes in Hadoop HDFS and compare to a currently deployed HDFS module that uses Reed-Solomon codes. Our modified HDFS implementation shows a reduction of approximately 2x on the repair disk I/O and repair network traffic. The disadvantage of the new coding scheme is that it requires 14{\%} more storage compared to Reed-Solomon codes, an overhead shown to be information theoretically optimal to obtain locality. Because the new codes repair failures faster, this provides higher reliability, which is orders of magnitude higher compared to replication.},
+archivePrefix = {arXiv},
+arxivId = {1301.3791},
+author = {Sathiamoorthy, Maheswaran and Asteris, Megasthenis and Papailiopoulos, Dimitris and Dimakis, Alexandros G. and Vadali, Ramkumar and Chen, Scott and Borthakur, Dhruba},
+doi = {10.14778/2535573.2488339},
+eprint = {1301.3791},
+file = {:Users/junli/Library/Application Support/Mendeley Desktop/Downloaded/Sathiamoorthy et al. - 2013 - XORing Elephants Novel Erasure Codes for Big Data.pdf:pdf},
+isbn = {21508097 (ISSN)},
+issn = {2150-8097},
+journal = {Proceedings of the VLDB Endowment},
+number = {5},
+pages = {325--336},
+pmid = {166029},
+title = {{XORing Elephants: Novel Erasure Codes for Big Data}},
+volume = {6},
+year = {2013}
+}
