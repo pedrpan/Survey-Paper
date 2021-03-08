@@ -9,18 +9,19 @@
 
 \maketitle
 
-
-\tableofcontents
-
 \begin{abstract}
 A ubiquitous problem in computer science research is the optimization of computation on large data sets. Such computations are usually too large to be preformed on one machine and therefore the task needs to be distributed amongst a network of machines. However, a common problem within distributed computing is the mitigation of delays caused by faulty machines in the network or traffic congestion. This can be performed by the use of coding theory to optimize the amount of redundancy needed to handle such faults.  This problem differs from classical coding theory insofar that it is concerned with the dynamic coded computation on data rather than just statically coding data without any consideration of the algorithms to be performed on said data. Of particular interest is the operation of matrix multiplication, which happens to be a fundamental operation in many big data/machine learning algorithms, which is the main focus of this paper. Two wonderful consequences of the (bi-)linear nature of matrix multiplication is that it is both highly parrallelizable and that linear codes can be applied to it; making the coding theory approach a fruitful avenue of research for this particular optimization of distributed computing. 
 \end{abstract}
 
-\section{Introduction}
+\tableofcontents
 
-As the rate at which CPU's get smaller slows (since there is an atomic limit on their size) distributed computing has become a more ubiquitous and necessary topic in both research and the lives of ordinary consumers of computer technology. 
+
+
+\chapter{Introduction}
+
+As the rate at which CPU's get smaller slows (since there is an atomic limit on their size), distributed computing has become a more ubiquitous and necessary topic in both research and the lives of ordinary consumers of computer technology. 
 Another reason for the rise of distributed computing is that data sets have become very large and the computations performed on them must be split amongst many machines. 
-In a distributed setting a large task is split up into smaller tasks that are run in parallel amongst the machines, or nodes, in the network. 
+In a distributed setting a large task is split up into smaller tasks that are run in parallel amongst the machines, or \textit{nodes}, in the network. 
 
 However, it is well known that nodes in a distributed infrastructure are commonly composed of commodity hardware which are more likely to be subject to various faulty behaviors~\cite{Huang2017a}. 
 One example of such a fault is when a node may experiences a temporary performance degradation due to load imbalance or resource congestion~\cite{Lee2018a}. 
@@ -31,34 +32,59 @@ In a Facebook data center, it has been reported that up to more than 100 such fa
 Therefore, when the computation is distributed onto multiple nodes, its progress can be significantly affected by the tasks running on such slow or failed
 nodes, which we call {\em stragglers}.
 
-\subsection{Problem Formulation}
+\section{Problem Formulation}
+
+In general we have some computation $f$ that we wish to perform on some data-set $D$. If the data-set $D$ or the computation $f$ becomes too large/expensive to perform on one machine, then the computation and the data set must be split up, or \emph{partitioned}, into smaller \emph{tasks} $\mathcal{P} : f(D) \mapsto f_1(D_1) ,..., f_k(D_k)$ as illustrated in fig~\ref{fig:1}. 
+\begin{figure}
+    \centering
+    % \includegraphics{}
+    \caption{Caption}
+    \label{fig:1}
+\end{figure}
+We wish to do so in a way that recreating the original job, $f(D)$ from the tasks $f_1(D_1) , ..., f_k(D_K)$ has very little overhead (\emph{i.e.,} we wish to minimize the complexity of $\mathcal{P}^{-1}$). 
+\textbf{In particular, if one of the machines, say $M_i$, takes a long time, say $t_i$, to compute $f_i(D_i)$ then the entire algorithm is delayed by the time $t_i$.} In the worst case, machine $M_i$ never finishes and the computation $f(D)$ is never completed. 
+The main idea is to add some redundant tasks $f_{k+1}(D_{k+1}),...,f_{k+r}(D_{k+r})$ to $\mathcal{P}$ so as to mitigate the possibility of stragglers (\emph{i.e.,} so that we can recreate $f(D)$ without needing the data $f_i(M_i)$).
+However, this cannot be done naively; we will show in sec.~\ref{sec:mot_ex} that merely replicating the same tasks on other workers will not suffice since it is highly inefficient and can suffer from the same faults it is trying to solve. Therefore it becomes necessary to apply error-correcting codes, or more precisely \textit{erasure codes}, to the problem. In particular the naive partition, replication, and recreating in $\mathcal{P},\mathcal{P}^{-1}$ are replaced with \emph{encoding} and \emph{decoding} functions $\mathcal{E},\mathcal{D}$ of an erasure code. 
+
+\section{Motivating Example}\label{sec:mot_ex}
 
 
-\section{Background}
+\section{Outline of the Survey}
 
-\subsection{Coding Theory}
+\chapter{Background}
 
-\subsection{Linear Algebra and Learning Algorithms}
+\section{Distributed Systems}
 
-\subsection{Distributed Systems}
+\section{Coding Theory}
 
 
-\section{Related Works}
-
-\subsection{Poly Codes}
-
-\subsection{Machine Learning}
+\section{Linear Algebra and Learning Algorithms}
 
 
 
+\chapter{Variations of the Main Problem ({and Their Proposed Solutions})}
 
-\section{Our Work}
+\section{One Large Matrix Multiplication}
 
-\subsection{Dual Entangled}
+\section{Multiple (\emph{i.e., Batch}) Matrix Multiplications}
 
-\subsection{Spinner}
+\section{Partial Results/Partial Stragglers}
 
-\subsection{Rook Poly}
+\section{More Complicated Functions/Machine Learning Applications}
+
+
+
+
+
+\chapter{Our Work}
+
+\section{Dual Entangled}
+
+\section{Spinner}
+
+\section{Rook Poly}
+
+\chapter{Future Work}
 
 \bibliographystyle{alpha}
 \bibliography{references}
